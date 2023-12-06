@@ -25,30 +25,46 @@ const getState = ({ getStore, getActions, setStore }) => {
 				await actions.getAgenda();
 			},
 
-			addContact: async (contactData) => {
-				const store = getStore();
-
-				const newContact = {
-					"full_name": contactData.fullName,
-					"email": contactData.email,
-					"agenda_slug": contactData.agendaSlug,
-					"address": contactData.address,
-					"phone": contactData.phone,
+			editContact: async (id, contacts) => {
+				const actions = getActions ();
+				const editContact = {
+					"full_name": contacts.full_name,
+					"email": contacts.email,
+					"agenda_slug": "cr7thebest",
+					"address": contacts.address,
+					"phone": contacts.phone
 				};
+				
+				 await fetch (`https://playground.4geeks.com/apis/fake/contact/${id}`,{
+						method: "PUT",
+						headers: {"Content-Type": "application/json"},
+						body: JSON.stringify (editContact),
+					});
+					
+					await actions.getAgenda();
+					
+				
+			},
 
-				await fetch("https://playground.4geeks.com/apis/fake/contact", {
+			addContact: async (contacts) => {
+				const newContact = {
+					"full_name": contacts.full_name,
+					"email": contacts.email,
+					"agenda_slug": "cr7thebest",
+					"address": contacts.address,
+					"phone": contacts.phone
+				};
+				
+				const store = getStore();
+				await fetch ("https://playground.4geeks.com/apis/fake/contact", {
 					method: "POST",
 					headers: {"Content-Type": "application/json"},
-					body: JSON.stringify({
-						"full_name": contactData.fullName,
-						"email": contactData.email,
-						"agenda_slug": contactData.agendaSlug,
-						"address": contactData.address,
-						"phone": contactData.phone,
-					})
+					body: JSON.stringify (newContact),
 				});
 
-				setStore({ contacts: [...store.contacts, newContact]})
+				const actions = getActions ();
+				actions.getAgenda (); 
+				setStore ({contacts:[...store.contacts, newContact] });
 			}
 		}
 	};

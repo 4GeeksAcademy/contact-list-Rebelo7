@@ -1,3 +1,12 @@
 /* 
     General Styles
 */
+.contactForm{padding: 30px;}
+
+h1{text-align: center;}
+
+.returnButton{background: none;
+color: blue;
+border: none;} 
+
+img{border-radius: 50%;}

@@ -1,43 +1,58 @@
 import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
+
 export const CreateContact = props => {
-	const { store, actions } = useContext(Context);
-	const params = useParams();
-	return (
-		<div className="jumbotron">
-			<form className="contactform">: 
-				<div className="mb-3">
-				<label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-				<input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-				<div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-				</div>
-				<div className="mb-3">
-				<label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-				<input type="password" className="form-control" id="exampleInputPassword1" />
-				</div>
-				<div className="mb-3 form-check">
-				<input type="checkbox" className="form-check-input" id="exampleCheck1" />
-				<label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-				</div>
-				<button type="submit" className="btn btn-primary">Submit</button>
+  const { store, actions } = useContext(Context);
+  const params = useParams();
 
-				{store.contacts[params.theid].form}
-			</form>
-			
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+
+      const createData = {
+          full_name: fullName,
+          email: email,
+          address: address,
+          phone: phone,
+         
+      };
+      actions.addContact(createData)
+  }
+
+  return (
+      <div className='contactForm'>
+          <h1>Add Contact</h1>
+          <form onSubmit={handleSubmit}>
+          
+              <div class="mb-3">
+                 <label for="fullName" class="form-label">Full Name</label>
+                 <input type="text" id="fullName" class="form-control" name="fullName" placeholder="Full Name" value={fullName} onChange={e => setFullName(e.target.value)} />
+              </div>
+              <div class="mb-3">
+                 <label for="email" class="form-label">Email</label>
+                 <input type="email" id="email" class="form-control" name="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+              </div>
+              <div class="mb-3">
+                 <label for="address" class="form-label">Address</label>
+                 <input type="text" id="address" class="form-control" name="address" placeholder="Address" value={address} onChange={e => setAddress(e.target.value)} />
+              </div>
+              <div class="mb-3">
+                 <label for="phone" class="form-label">Phone</label>
+                 <input type="text" id="phone" class="form-control" name="phone" placeholder="Phone" value={phone} onChange={e => setPhone(e.target.value)} />
+              </div>
+              <button type="submit" class="btn btn-primary">Add Contact</button>
+          </form>
+          <Link to="/contacts">
+              <button className="returnButton btn btn-primary">Return to contacts</button>
+          </Link>
+      </div>
+  );
+}
 
 
-			<Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
-				Contacts List
-				</span>
-			</Link>
-		</div>
-	);
-};
-
-CreateContact.propTypes = {
-	match: PropTypes.object
-};
