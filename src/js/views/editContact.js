@@ -50,23 +50,23 @@ export const EditContact = props => {
     <div className='contactForm'>
       <h1>Edit Contact</h1>
       <form onSubmit={handleEdit}>
-        <div class="mb-3">
-          <label for="fullName" class="form-label">Full Name</label>
-          <input type="text" id="fullName" class="form-control" name="fullName" placeholder="Edit Name" value={fullName} onChange={handleChangeFullName} />
+        <div className="mb-3">
+          <label for="fullName" className="form-label">Full Name</label>
+          <input type="text" id="fullName" className="form-control" name="fullName" placeholder="Edit Name" value={fullName} onChange={handleChangeFullName} />
         </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" id="email" class="form-control" name="email" placeholder="Edit Email" value={email} onChange={handleChangeEmail} />
+        <div className="mb-3">
+          <label for="email" className="form-label">Email</label>
+          <input type="email" id="email" className="form-control" name="email" placeholder="Edit Email" value={email} onChange={handleChangeEmail} />
         </div>
-        <div class="mb-3">
-          <label for="address" class="form-label">Address</label>
-          <input type="text" id="address" class="form-control" name="address" placeholder="Edit Address" value={address} onChange={handleChangeAddress} />
+        <div className="mb-3">
+          <label for="address" className="form-label">Address</label>
+          <input type="text" id="address" className="form-control" name="address" placeholder="Edit Address" value={address} onChange={handleChangeAddress} />
         </div>
-        <div class="mb-3">
-          <label for="phone" class="form-label">Phone</label>
-          <input type="text" id="phone" class="form-control" name="phone" placeholder="Edit Phone" value={phone} onChange={handleChangePhone} />
+        <div className="mb-3">
+          <label for="phone" className="form-label">Phone</label>
+          <input type="text" id="phone" className="form-control" name="phone" placeholder="Edit Phone" value={phone} onChange={handleChangePhone} />
         </div>
-        <button type="submit" class="btn btn-primary">Edit Contact</button>
+        <button type="submit" className="btn btn-primary">Edit Contact</button>
       </form>
       <Link to="/contacts">
         <button className="returnButton btn btn-primary">Return to contacts</button>
